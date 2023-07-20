@@ -42,6 +42,9 @@ public class AudioRecorder: NSObject, AVAudioRecorderDelegate{
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord, options: options)
             try AVAudioSession.sharedInstance().setActive(true)
+            if #available(iOS 13.0, *){
+            try AVAudioSession.sharedInstance().setAllowHapticsAndSystemSoundsDuringRecording(true)
+            }
             
             audioUrl = URL(fileURLWithPath: self.path!)
             
